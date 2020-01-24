@@ -50,7 +50,6 @@ public:
 
     void print()
     {
-
         std::cout << val_;
     }
 

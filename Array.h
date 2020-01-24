@@ -60,6 +60,20 @@ public:
     }
 
     /**
+     * Returns the index of the given Object.
+     *
+     */
+    size_t index_of(Object* o) {
+        size_t idx = this->size() + 1;
+        for (size_t i = 0; i < len_; i++) {
+            if (o->equals(this->arr[i])) {
+                idx = i;
+            }
+        }
+        return idx;
+    }
+
+    /**
      * Returns the last element in the Array
      */
     Object* back() {
