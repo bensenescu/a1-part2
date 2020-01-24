@@ -11,4 +11,4 @@ valgr:
 	valgrind --leak-check-full --show-task-kinds=all --track-origins=yes -v ./a.out
 
 clean:
-	rm a.out
+	rm -r a.out*

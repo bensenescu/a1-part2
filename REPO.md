@@ -1,1 +1,1 @@
-https://github.com/chitalian/a1-part2
+https://github.com/chitalian/a1-part2.git

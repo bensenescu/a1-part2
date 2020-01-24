@@ -19,6 +19,20 @@ void test1() {
     // OK("1");
 }
 
+// testing String constructors and functions
+void test2() {
+    String * s = new String("Hello");
+    String * t = new String("World");
+    String * u = s->concat(t);
+    Array * arr = new Array();
+    arr->add(s);
+    arr->add(t);
+    arr->add(u);
+    t_true(arr->size() == 3);
+    // OK("1");
+}
+
+
 int main() {
     test1();
     return 0;

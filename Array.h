@@ -20,7 +20,10 @@ public:
         delete[] arr;
     }
 
-    void allocate() {
+    /**
+     * Allocates memory onto the Heap depending on the size of cap
+     */
+    void allocate_() {
         if (len_ == cap_) {
             Object** temp = new Object*[2 * cap_];
 
@@ -33,7 +36,7 @@ public:
         }
     }
 
-    void deallocate() {
+    void deallocate_() {
         if (len_ < cap_ / 2) {
             Object** temp = new Object*[cap_ / 2];
 
@@ -93,7 +96,7 @@ public:
     void add(Object* e) {
         arr[len_] = e;
         len_++;
-        this->allocate();
+        this->allocate_();
     }
 
     /**
@@ -106,7 +109,7 @@ public:
         }
         else {
             len_++;
-            this->allocate();
+            this->allocate_();
             for (size_t j = len_; j > i; j++) {
                 arr[j] = arr[j-1];
             }
@@ -124,7 +127,7 @@ public:
             arr[j] = arr[j+1];
         }
         len_--;
-        this->deallocate();
+        this->deallocate_();
         return elem;
     }
 
