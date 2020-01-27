@@ -3,7 +3,7 @@
 #define SOFTWARE_DEV_A1_ARRAY_H
 
 #include "object.h"
-class Array : Object
+class Array : public Object
 {
 public:
     Object **arr;
@@ -126,7 +126,7 @@ public:
     }
 
     /**
-     * Overrides Object.hash()
+     * Overrides Object.hash() 
      * Generates a hash depending on the String contents
      */
     void hash() {
