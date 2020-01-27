@@ -117,10 +117,19 @@ public:
     }
 
     /**
+     * Overrides Object.equals()
      * Checks if this string is equal to another. 
      * This function will do an `strcmp` on both strings
      */
     bool equals() {
+
+    }
+
+    /**
+     * Overrides Object.hash()
+     * Generates a hash depending on the String contents
+     */
+    void hash() {
 
     }
 };
