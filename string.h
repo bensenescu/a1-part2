@@ -1,82 +1,85 @@
+// Source - https://piazza.com/class/k51bluky59n2jr?cid=166
+
 //lang::CwC
 #pragma once
 #include <iostream>
 #include "object.h"
-
-/**
- * Represents a single string of characters.
- */
-class String : public Object
-{
-public:
-    char *val_;
-    size_t size_;
-
-    String(const char *val)
-    {
-        size_ = strlen(val);
-        val_ = new char[size_ + 1];
-        // printf("size_ = %i\n", size_);
-        for (size_t i = 0; i < size_ + 1; i++)
-        {
-            val_[i] = val[i];
-        }
-        // printf("%s, size = %i\n", val_, strlen(val_));
-    }
-
-    ~String()
-    {
-        delete val_;
-    }
-
-    /**
-         * Concats e to this and then returns a new string object
-         */
-    String *concat(String *e)
-    {
-        const char *cat = strcat(this->val(), e->val());
-        String *ret = new String(cat);
-        delete cat;
-        return ret;
-    }
-
-    void toLower()
-    {
-        for (int i = 0; i < this->length(); i++)
-        {
-            this->val_[i] = tolower(this->val_[i]);
-        }
-    }
-
-    void print()
-    {
-        std::cout << val_;
-    }
-
-    size_t length()
-    {
-        return size_;
-    }
-
-    char *val()
-    {
-        return val_;
-    }
-
-    int compare(String *e)
-    {
-        return strcmp(this->val(), e->val());
-    }
-    /**
-         * Determines if two strings are equal to eachother
-         */
-    virtual bool equals(Object *o)
-    {
-        String *e = dynamic_cast<String *>(o);
-        if (e == NULL)
-        {
-            return false;
-        }
-        return this->size_ == e->size_ && this->compare(e) == 0;
-    }
-};
+#pragma once                                                                     
+//lang::CwC                                                                      
+#include "object.h"                                                              
+#include <cassert>                                                                                                                                                
+/**                                                                              
+ * An immutable string class. Values passed in are copied and deleted            
+ * upon destruction.                                                             
+ * author: vitekj@me.com                                                         
+ */                                                                              
+class String : public Object {                                                   
+ public:                                                                                                                                                        
+  char* val_; // data                                                            
+  size_t size_; // number of characters (excluding \0)                           
+                                                                                 
+  /** Construct a string copying s */                                            
+  String(char* s) {                                                              
+    size_ = strlen(s);                                                           
+    val_ = duplicate(s);                                                         
+  }                                                                              
+                                                                                 
+  /** Construct a string copying s */                                            
+  String(const char* s) {                                                        
+    size_ = strlen(s);                                                           
+    val_ = duplicate(s);                                                         
+  }                                                                              
+                                                                                 
+  /** This constructor takes ownership of the char* s. The char*                 
+   *  will be delete with the string. Use with caution. The first                
+   *  argument is there to differentiate this constructor from the               
+   *  standard one. */                                                           
+  String(bool steal, char* s){                                                   
+    assert(steal);                                                               
+    size_ = strlen(s);                                                           
+    val_ = s;                                                                    
+  }                                                                              
+                                                                                 
+  /** Delete the string and free its data */                                     
+  ~String () { delete[] val_; }                                                  
+                                                                                 
+  /** Compare strings for equality. */                                           
+  bool equals(Object* other) {                                                   
+    if (other == nullptr) return false;                                          
+    String* tgt = dynamic_cast<String*>(other);                                  
+    if (tgt == nullptr) return false;                                            
+    return compare(tgt)== 0;                                                     
+  }                                                                              
+                                                                                          
+  /** Returns 0 if strings are equal, >0 if this string is larger,               
+   *  <0 otherwise */                                                            
+  int compare(String* tgt) { return strcmp(val_, tgt->val_); }                   
+                                                                                 
+  /** Textbook hash function on strings.   */                                    
+  size_t hash_me_() {                                                            
+    size_t hash = 0;                                                             
+    for (size_t i = 0; i < size_; ++i)                                           
+      hash = val_[i] + (hash << 6) + (hash << 16) - hash;                        
+    return hash;                                                                 
+  }                                                                              
+                                                                                 
+  /** Number of non \0 characters in this string */                              
+  size_t size() { return size_; }                                                
+                                                                                 
+  /** Concatenate the strings, return a new object */                            
+  String* concat(String* other) {                                                
+    char* res = new char[size_ + other->size() + 1];                             
+    for (size_t i = 0; i < size_; i++)                                           
+      res[i] = val_[i];                                                          
+    for (size_t i = size_, j = 0; i < size_ + other->size(); i++, j++)           
+      res[i] = val_[j];                                                          
+    res[size_] = '\0';                                                           
+    return new String(true, res);                                                
+  }                                                                              
+                                                                                 
+  /** Return a newly allocated char* with this string value */                   
+  char* to_string() { return duplicate(val_); }                                  
+                                                                                 
+  /** Print this string on stdout. */                                            
+  void print() { p("String(\"").p(val_).p("\")");  }                             
+};               
