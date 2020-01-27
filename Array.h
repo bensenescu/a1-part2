@@ -115,6 +115,14 @@ public:
     void clear()
     {
     }
+
+    /**
+     * Checks if this string is equal to another. 
+     * This function will do an `strcmp` on both strings
+     */
+    bool equals() {
+
+    }
 };
 
 #endif //SOFTWARE_DEV_A1_ARRAY_H
