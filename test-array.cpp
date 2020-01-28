@@ -7,6 +7,68 @@ void t_true(bool p) { if (!p) FAIL(); }
 void t_false(bool p) { if (p) FAIL(); }
 
 
+class Integer : public Object {
+    public:
+    int val;
+
+    Integer() {
+        this->val = 0;
+    }
+    Integer(int val) {
+        this->val = val;
+    }
+    ~Integer() { }
+    int get() {
+        return this->val;
+    }
+    void set(int val) {
+        this->val = val;
+    }
+};
+
+class Boolean : public Object {
+    public:
+    bool val;
+
+    Boolean() {
+        this->val = 0;
+    }
+    Boolean(bool val) {
+        this->val = val;
+    }
+    ~Boolean() { }
+    bool get() {
+        return this->val;
+    }
+    void set(bool val) {
+        this->val = val;
+    }
+};
+
+
+
+class FloatingNumber : public Object {
+    public:
+    float val;
+
+    FloatingNumber() {
+        this->val = 0;
+    }
+    FloatingNumber(float val) {
+        this->val = val;
+    }
+    ~FloatingNumber() { }
+    float get() {
+        return this->val;
+    }
+    void set(float val) {
+        this->val = val;
+    }
+};
+
+
+
+
 void test1() {
     String * s = new String("Hello");
     String * t = new String("World");
