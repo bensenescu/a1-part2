@@ -1,3 +1,7 @@
+### Change Log
+- Changed TestArray.cpp to test-array.cpp
+
+
 **Description of Part 2 Code**
 
 
