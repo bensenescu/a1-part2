@@ -8,7 +8,7 @@ void t_false(bool p) { if (p) FAIL(); }
 
 
 class Integer : public Object {
-    public:
+public:
     int val;
 
     Integer() {
@@ -18,25 +18,30 @@ class Integer : public Object {
         this->val = val;
     }
     ~Integer() { }
+
     int get() {
         return this->val;
     }
+
     void set(int val) {
         this->val = val;
     }
 };
 
 class Boolean : public Object {
-    public:
+public:
     bool val;
 
     Boolean() {
         this->val = 0;
     }
+
     Boolean(bool val) {
         this->val = val;
     }
+
     ~Boolean() { }
+
     bool get() {
         return this->val;
     }
@@ -48,7 +53,7 @@ class Boolean : public Object {
 
 
 class FloatingNumber : public Object {
-    public:
+public:
     float val;
 
     FloatingNumber() {
@@ -58,6 +63,7 @@ class FloatingNumber : public Object {
         this->val = val;
     }
     ~FloatingNumber() { }
+
     float get() {
         return this->val;
     }
@@ -65,9 +71,6 @@ class FloatingNumber : public Object {
         this->val = val;
     }
 };
-
-
-
 
 void test1() {
     String * s = new String("Hello");
@@ -211,6 +214,36 @@ void test10() {
     t_true(arr->at(1) == NULL);
     dynamic_cast<String*>(arr->at(0))->concat(new String("HELLO"));
 }
+
+void testWithIntegers() {
+    Integer * zero = new Integer();
+    Integer * one = new Integer(1);
+    Integer * two = new Integer(2);
+    Integer * three = new Integer(3);
+    Array * arr = new Array();
+    t_true(arr->size() == 0);
+    arr->add(zero);
+    arr->add(one);
+    arr->add(two);
+    arr->add(three);
+    t_true(arr->size() == 4);
+}
+
+void testWithFloatingNumbers() {
+    FloatingNumber * ex1 = new FloatingNumber(2.0);
+    FloatingNumber * ex2 = new FloatingNumber(3.5);
+    FloatingNumber * ex3 = new FloatingNumber(3.5);
+    Array * arr = new Array();
+    t_true(arr->size() == 0);
+    arr->add(ex1);
+    arr->add(ex2);
+    arr->add(ex3);
+    t_true(arr->size() == 3);
+}
+
+//void testWithBooleans() {
+//
+//}
 
 
 int main() {
