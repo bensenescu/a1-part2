@@ -241,9 +241,16 @@ void testWithFloatingNumbers() {
     t_true(arr->size() == 3);
 }
 
-//void testWithBooleans() {
-//
-//}
+void testWithBooleans() {
+    Boolean * ex1 = new Boolean(true);
+    Boolean * ex2 = new Boolean(false);
+    Array * arr = new Array();
+    t_true(arr->size() == 0);
+    arr->add(ex1);
+    arr->add(ex2);
+    arr->add(ex3);
+    t_true(arr->size() == 3);
+}
 
 
 int main() {
