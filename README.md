@@ -1,5 +1,7 @@
 ### Change Log
 - Changed TestArray.cpp to test-array.cpp
+- Added wrapper classes for bool, int and floating numbers
+- Added tests for new data types ^
 
 
 **Description of Part 2 Code**
