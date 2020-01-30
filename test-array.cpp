@@ -3,7 +3,7 @@
 
 void FAIL() { exit(1); }
 void OK(const char *m)
-{
+{ /** print m */
 }
 void t_true(bool p)
 {
