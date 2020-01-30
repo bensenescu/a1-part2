@@ -283,6 +283,9 @@ void test11()
     t_true(arr->index_of(t) == 2);
     t_true(arr->index_of(k) == 0);
     t_true(arr->index_of(l) == 1);
+    arr->clear();
+    t_true(arr->size() == 0);
+    
 }
 
 void testWithIntegers()
