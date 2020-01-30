@@ -1,4 +1,4 @@
-#include "array.h"
+#include "Array.h"
 #include "string.h"
 
 void FAIL() { exit(1); }
