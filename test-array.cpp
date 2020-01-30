@@ -40,6 +40,14 @@ public:
     {
         this->val = val;
     }
+
+    size_t hash() {
+        return this->val;
+    }
+
+    bool equals(Object* other) { 
+        return this->hash() == other->hash(); 
+    } 
 };
 
 class Boolean : public Object
@@ -67,6 +75,14 @@ public:
     {
         this->val = val;
     }
+
+    size_t hash() {
+        return this->val;
+    }
+
+    bool equals(Object* other) { 
+        return this->hash() == other->hash(); 
+    } 
 };
 
 class FloatingNumber : public Object
@@ -92,6 +108,14 @@ public:
     {
         this->val = val;
     }
+
+    size_t hash() {
+        return static_cast<size_t>(this->val*100000.0);
+    }
+
+    bool equals(Object* other) { 
+        return this->hash() == other->hash(); 
+    } 
 };
 
 void test1()
@@ -288,7 +312,7 @@ void testWithBooleans()
     Boolean *ex1 = new Boolean(true);
     Boolean *ex2 = new Boolean(false);
     Boolean *ex3 = new Boolean(false);
-    t_true(ex1->equals(ex3);
+    t_true(ex1->equals(ex3));
 
     Array *arr = new Array();
     t_true(arr->size() == 0);
