@@ -16,6 +16,9 @@ void t_false(bool p)
         FAIL();
 }
 
+/**
+ * Represents an Integer data type.
+ */
 class Integer : public Object
 {
 public:
@@ -50,6 +53,9 @@ public:
     } 
 };
 
+/**
+ * Represents an Boolean data type.
+ */
 class Boolean : public Object
 {
 public:
@@ -85,6 +91,9 @@ public:
     } 
 };
 
+/**
+ * Represents a Float data type.
+ */
 class FloatingNumber : public Object
 {
 public:
@@ -364,6 +373,10 @@ void testWithBooleans()
 
     t_true(arr->remove(0)->equals(ex1));
     t_true(arr->remove(2) == nullptr);
+}
+
+void testCustomClasses() {
+
 }
 
 int main()
