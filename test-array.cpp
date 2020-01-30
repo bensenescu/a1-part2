@@ -1,82 +1,105 @@
 #include "Array.h"
 #include "string.h"
 
-void FAIL() {   exit(1);    }
-void OK(const char* m) { /** print m */ }
-void t_true(bool p) { if (!p) FAIL(); }
-void t_false(bool p) { if (p) FAIL(); }
+void FAIL() { exit(1); }
+void OK(const char *m)
+{ /** print m */
+}
+void t_true(bool p)
+{
+    if (!p)
+        FAIL();
+}
+void t_false(bool p)
+{
+    if (p)
+        FAIL();
+}
 
-
-class Integer : public Object {
+class Integer : public Object
+{
 public:
     int val;
 
-    Integer() {
+    Integer()
+    {
         this->val = 0;
     }
-    Integer(int val) {
+    Integer(int val)
+    {
         this->val = val;
     }
-    ~Integer() { }
+    ~Integer() {}
 
-    int get() {
+    int get()
+    {
         return this->val;
     }
 
-    void set(int val) {
+    void set(int val)
+    {
         this->val = val;
     }
 };
 
-class Boolean : public Object {
+class Boolean : public Object
+{
 public:
     bool val;
 
-    Boolean() {
+    Boolean()
+    {
         this->val = 0;
     }
 
-    Boolean(bool val) {
+    Boolean(bool val)
+    {
         this->val = val;
     }
 
-    ~Boolean() { }
+    ~Boolean() {}
 
-    bool get() {
+    bool get()
+    {
         return this->val;
     }
-    void set(bool val) {
+    void set(bool val)
+    {
         this->val = val;
     }
 };
 
-
-
-class FloatingNumber : public Object {
+class FloatingNumber : public Object
+{
 public:
     float val;
 
-    FloatingNumber() {
+    FloatingNumber()
+    {
         this->val = 0;
     }
-    FloatingNumber(float val) {
+    FloatingNumber(float val)
+    {
         this->val = val;
     }
-    ~FloatingNumber() { }
+    ~FloatingNumber() {}
 
-    float get() {
+    float get()
+    {
         return this->val;
     }
-    void set(float val) {
+    void set(float val)
+    {
         this->val = val;
     }
 };
 
-void test1() {
-    String * s = new String("Hello");
-    String * t = new String("World");
-    String * u = s->concat(t);
-    Array * arr = new Array();
+void test1()
+{
+    String *s = new String("Hello");
+    String *t = new String("World");
+    String *u = s->concat(t);
+    Array *arr = new Array();
     t_true(arr->size() == 0);
     arr->add(s);
     arr->add(t);
@@ -84,29 +107,28 @@ void test1() {
     t_true(arr->size() == 3);
 }
 
-    
-
 // testing At function
-void test2() {
-    Array * arr = new Array();
-    String * a = new String("Apple");
-    String * b = new String("Banana");
-    String * c = new String("Chocolate");
+void test2()
+{
+    Array *arr = new Array();
+    String *a = new String("Apple");
+    String *b = new String("Banana");
+    String *c = new String("Chocolate");
     arr->add(a);
     arr->add(b);
     arr->add(c);
     t_true(arr->at(0)->equals(a));
     t_true(arr->at(1)->equals(b));
     t_true(arr->at(2)->equals(c));
-
 }
 
 // testing Back function
-void test3() {
-    Array * arr = new Array();
-    String * a = new String("Apple");
-    String * b = new String("Banana");
-    String * c = new String("Chocolate");
+void test3()
+{
+    Array *arr = new Array();
+    String *a = new String("Apple");
+    String *b = new String("Banana");
+    String *c = new String("Chocolate");
     arr->add(a);
     arr->add(b);
     t_true(arr->back()->equals(b));
@@ -115,11 +137,12 @@ void test3() {
 }
 
 // testing Begin function
-void test4() {
-    Array * arr = new Array();
-    String * a = new String("Apple");
-    String * b = new String("Banana");
-    String * c = new String("Chocolate");
+void test4()
+{
+    Array *arr = new Array();
+    String *a = new String("Apple");
+    String *b = new String("Banana");
+    String *c = new String("Chocolate");
     arr->add(a);
     arr->add(b);
     t_true(arr->begin()->equals(a));
@@ -128,11 +151,12 @@ void test4() {
 }
 
 // testing Size function
-void test5() {
-    Array * arr = new Array();
-    String * a = new String("Apple");
-    String * b = new String("Banana");
-    String * d = new String("Dessert");
+void test5()
+{
+    Array *arr = new Array();
+    String *a = new String("Apple");
+    String *b = new String("Banana");
+    String *d = new String("Dessert");
     t_true(arr->size() == 0);
     arr->add(a);
     arr->add(b);
@@ -141,23 +165,25 @@ void test5() {
 }
 
 // testing Empty function
-void test6() {
-    Array * arr = new Array();
+void test6()
+{
+    Array *arr = new Array();
     t_true(arr->empty());
-    String * a = new String("Apple");
-    String * b = new String("Banana");
+    String *a = new String("Apple");
+    String *b = new String("Banana");
     arr->add(a);
     arr->add(b);
     t_false(arr->empty());
 }
 
 // testing Add with Index function
-void test7() {
-    Array * arr = new Array();
-    String * a = new String("Apple");
-    String * b = new String("Banana");
-    String * c = new String("Caramel");
-    String * d = new String("Dessert");
+void test7()
+{
+    Array *arr = new Array();
+    String *a = new String("Apple");
+    String *b = new String("Banana");
+    String *c = new String("Caramel");
+    String *d = new String("Dessert");
     arr->add(a);
     arr->add(b);
     arr->add(d);
@@ -168,12 +194,13 @@ void test7() {
 }
 
 // testing Remove function
-void test8() {
-    Array * arr = new Array();
-    String * a = new String("Apple");
-    String * b = new String("Banana");
-    String * c = new String("Cherry");
-    String * d = new String("Dark Chocolate");
+void test8()
+{
+    Array *arr = new Array();
+    String *a = new String("Apple");
+    String *b = new String("Banana");
+    String *c = new String("Cherry");
+    String *d = new String("Dark Chocolate");
     arr->add(a);
     arr->add(b);
     arr->add(c);
@@ -185,12 +212,13 @@ void test8() {
 }
 
 // testing Clear function
-void test9() {
-    Array * arr = new Array();
-    String * a = new String("Apple");
-    String * b = new String("Banana");
-    String * c = new String("Cherry");
-    String * d = new String("Dark Chocolate");
+void test9()
+{
+    Array *arr = new Array();
+    String *a = new String("Apple");
+    String *b = new String("Banana");
+    String *c = new String("Cherry");
+    String *d = new String("Dark Chocolate");
     arr->add(a);
     arr->add(b);
     arr->add(c);
@@ -201,59 +229,82 @@ void test9() {
 }
 
 // Tests Only a single element in an Array
-void test10() {
-    String * t = new String("World");
-    Array * arr = new Array();
+void test10()
+{
+    String *t = new String("World");
+    Array *arr = new Array();
     arr->add(t);
     t_true(arr->back()->equals(arr->begin()));
     t_true(strcmp(
-        dynamic_cast<String*>(arr->at(0))->val(),
-        "World") == 0);
+               dynamic_cast<String *>(arr->at(0))->val(),
+               "World") == 0);
     t_true(arr->at(0)->equals(new String("World")));
     t_true(!arr->at(0)->equals(new String("NOT WORLD")));
     t_true(arr->at(1) == NULL);
-    dynamic_cast<String*>(arr->at(0))->concat(new String("HELLO"));
+    dynamic_cast<String *>(arr->at(0))->concat(new String("HELLO"));
 }
 
-void testWithIntegers() {
-    Integer * zero = new Integer();
-    Integer * one = new Integer(1);
-    Integer * two = new Integer(2);
-    Integer * three = new Integer(3);
-    Array * arr = new Array();
+void testWithIntegers()
+{
+    Integer *zero = new Integer();
+    Integer *one = new Integer(1);
+    Integer *two = new Integer(2);
+    Integer *three = new Integer(3);
+    Array *arr = new Array();
     t_true(arr->size() == 0);
     arr->add(zero);
+    t_true(!arr->empty());
     arr->add(one);
     arr->add(two);
     arr->add(three);
     t_true(arr->size() == 4);
+    t_true(dynamic_cast<Integer *>(arr->at(0))->get() == 0);
+    t_true(dynamic_cast<Integer *>(arr->at(3))->get() == 3);
+    t_true(dynamic_cast<Integer *>(arr->at(3))->equals(new Integer(3)));
 }
 
-void testWithFloatingNumbers() {
-    FloatingNumber * ex1 = new FloatingNumber(2.0);
-    FloatingNumber * ex2 = new FloatingNumber(3.5);
-    FloatingNumber * ex3 = new FloatingNumber(3.5);
-    Array * arr = new Array();
+void testWithFloatingNumbers()
+{
+    FloatingNumber *ex1 = new FloatingNumber(2.0);
+    FloatingNumber *ex2 = new FloatingNumber(3.5);
+    FloatingNumber *ex3 = new FloatingNumber(3.5);
+    Array *arr = new Array();
+    t_true(arr->size() == 0);
+    t_true(arr->empty());
+    arr->add(ex1);
+    t_true(!arr->empty());
+    arr->add(ex2);
+    arr->add(ex3);
+    t_true(arr->size() == 3);
+    t_true(!arr->empty());
+    t_true(dynamic_cast<FloatingNumber *>(arr->at(0))->get() == 2.0);
+    t_true(dynamic_cast<FloatingNumber *>(arr->at(1))->get() +
+               dynamic_cast<FloatingNumber *>(arr->at(2))->get() ==
+           7.0);
+}
+
+void testWithBooleans()
+{
+    Boolean *ex1 = new Boolean(true);
+    Boolean *ex2 = new Boolean(false);
+    Boolean *ex3 = new Boolean(false);
+    t_true(ex1->equals(ex3);
+
+    Array *arr = new Array();
     t_true(arr->size() == 0);
     arr->add(ex1);
     arr->add(ex2);
     arr->add(ex3);
+    t_true(arr->back()->equals(new Boolean(false)));
+    
+    t_true(dynamic_cast<Boolean *>(arr->at(0))->get());
+    t_true(!dynamic_cast<Boolean *>(arr->at(1))->get());
     t_true(arr->size() == 3);
 }
 
-void testWithBooleans() {
-    Boolean * ex1 = new Boolean(true);
-    Boolean * ex2 = new Boolean(false);
-    Array * arr = new Array();
-    t_true(arr->size() == 0);
-    arr->add(ex1);
-    arr->add(ex2);
-    arr->add(ex3);
-    t_true(arr->size() == 3);
-}
-
-
-int main() {
+int main()
+{
+    OK("Testing other types!\n");
     test1();
     test2();
     test3();
@@ -264,6 +315,14 @@ int main() {
     test8();
     test9();
     test10();
+
+
+    OK("Testing other types!\n");
+    testWithIntegers();
+    testWithFloatingNumbers();
+    testWithBooleans();
+
+    OK("WOOOHOOO YOU PASSED ALL THE TESTS :)!\n");
 
     return 0;
 }
