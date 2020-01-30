@@ -1,9 +1,9 @@
-#include "Array.h"
+#include "array.h"
 #include "string.h"
 
 void FAIL() { exit(1); }
 void OK(const char *m)
-{ /** print m */
+{
 }
 void t_true(bool p)
 {
@@ -261,7 +261,7 @@ void test10()
     t_true(arr->back()->equals(arr->begin()));
     t_true(arr->at(0)->equals(new String("World")));
     t_true(!arr->at(0)->equals(new String("NOT WORLD")));
-    t_true(arr->at(1) == NULL);
+    t_true(arr->at(1) == nullptr);
 }
 
 void test11()
@@ -302,9 +302,16 @@ void testWithIntegers()
     arr->add(two);
     arr->add(three);
     t_true(arr->size() == 4);
+
+    t_true(arr->index_of(zero) == 0);
+    t_true(arr->index_of(one) == 1);
+
     t_true(dynamic_cast<Integer *>(arr->at(0))->get() == 0);
     t_true(dynamic_cast<Integer *>(arr->at(3))->get() == 3);
     t_true(dynamic_cast<Integer *>(arr->at(3))->equals(new Integer(3)));
+
+    t_true(arr->remove(0)->equals(zero));
+    t_true(arr->remove(3) == nullptr);
 }
 
 void testWithFloatingNumbers()
@@ -321,10 +328,17 @@ void testWithFloatingNumbers()
     arr->add(ex3);
     t_true(arr->size() == 3);
     t_true(!arr->empty());
+
+    t_true(arr->index_of(ex1) == 0);
+    t_true(arr->index_of(ex3) == 2);
+
     t_true(dynamic_cast<FloatingNumber *>(arr->at(0))->get() == 2.0);
     t_true(dynamic_cast<FloatingNumber *>(arr->at(1))->get() +
                dynamic_cast<FloatingNumber *>(arr->at(2))->get() ==
            7.0);
+
+    t_true(arr->remove(0)->equals(ex1));
+    t_true(arr->remove(2) == nullptr);
 }
 
 void testWithBooleans()
@@ -332,7 +346,7 @@ void testWithBooleans()
     Boolean *ex1 = new Boolean(true);
     Boolean *ex2 = new Boolean(false);
     Boolean *ex3 = new Boolean(false);
-    t_true(ex1->equals(ex3));
+    t_true(ex2->equals(ex3));
 
     Array *arr = new Array();
     t_true(arr->size() == 0);
@@ -340,10 +354,16 @@ void testWithBooleans()
     arr->add(ex2);
     arr->add(ex3);
     t_true(arr->back()->equals(new Boolean(false)));
-    
+
+    t_true(arr->index_of(ex1) == 0);
+    t_true(arr->index_of(ex3) == 2);
+
     t_true(dynamic_cast<Boolean *>(arr->at(0))->get());
     t_true(!dynamic_cast<Boolean *>(arr->at(1))->get());
     t_true(arr->size() == 3);
+
+    t_true(arr->remove(0)->equals(ex1));
+    t_true(arr->remove(2) == nullptr);
 }
 
 int main()
@@ -363,8 +383,11 @@ int main()
 
     OK("Testing other types!\n");
     testWithIntegers();
+    OK("test int");
     testWithFloatingNumbers();
+    OK("test float");
     testWithBooleans();
+    OK("test bool");
 
     OK("WOOOHOOO YOU PASSED ALL THE TESTS :)!\n");
 
