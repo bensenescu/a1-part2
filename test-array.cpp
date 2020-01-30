@@ -259,13 +259,30 @@ void test10()
     Array *arr = new Array();
     arr->add(t);
     t_true(arr->back()->equals(arr->begin()));
-    t_true(strcmp(
-               dynamic_cast<String *>(arr->at(0))->val(),
-               "World") == 0);
     t_true(arr->at(0)->equals(new String("World")));
     t_true(!arr->at(0)->equals(new String("NOT WORLD")));
     t_true(arr->at(1) == NULL);
-    dynamic_cast<String *>(arr->at(0))->concat(new String("HELLO"));
+}
+
+void test11()
+{
+    String *t = new String("Hello");
+    String *k = new String("World");
+    String *l = new String("Hi");
+    Array *arr = new Array();
+    t_true(arr->at(0) == nullptr);
+    arr->add(t);
+    t_true(arr->index_of(t) == 0);
+    t_true(arr->size() == 1);
+    arr->add(0, k);
+    t_true(arr->index_of(t) != 0);
+    t_true(arr->index_of(t) == 1);
+    t_true(arr->index_of(k) == 0);
+    arr->add(1, l);
+    t_true(arr->index_of(t) != 1);
+    t_true(arr->index_of(t) == 2);
+    t_true(arr->index_of(k) == 0);
+    t_true(arr->index_of(l) == 1);
 }
 
 void testWithIntegers()
