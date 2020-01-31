@@ -339,7 +339,7 @@ void testWithFloatingNumbers()
     t_true(!arr->empty());
 
     t_true(arr->index_of(ex1) == 0);
-    t_true(arr->index_of(ex3) == 2);
+    t_true(arr->index_of(ex3) == 1);
 
     t_true(dynamic_cast<FloatingNumber *>(arr->at(0))->get() == 2.0);
     t_true(dynamic_cast<FloatingNumber *>(arr->at(1))->get() +
@@ -365,7 +365,7 @@ void testWithBooleans()
     t_true(arr->back()->equals(new Boolean(false)));
 
     t_true(arr->index_of(ex1) == 0);
-    t_true(arr->index_of(ex3) == 2);
+    t_true(arr->index_of(ex3) == 1);
 
     t_true(dynamic_cast<Boolean *>(arr->at(0))->get());
     t_true(!dynamic_cast<Boolean *>(arr->at(1))->get());

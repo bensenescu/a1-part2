@@ -44,7 +44,7 @@ public:
     }
 
     /**
-     * Returns the index of the given Object.
+     * Returns the first index of the given Object.
      *
      */
     size_t index_of(Object *o)
