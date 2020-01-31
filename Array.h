@@ -121,7 +121,7 @@ public:
      * Checks if this string is equal to another. 
      * This function will do an `strcmp` on both strings
      */
-    bool equals() {
+    bool equals(Object* obj) {
 
     }
 
