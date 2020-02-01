@@ -1,4 +1,4 @@
-#include "Array.h"
+#include "array.h"
 #include "string.h"
 
 void FAIL() { exit(1); }
@@ -312,9 +312,6 @@ void testWithIntegers()
     arr->add(three);
     t_true(arr->size() == 4);
 
-    t_true(arr->index_of(zero) == 0);
-    t_true(arr->index_of(one) == 1);
-
     t_true(dynamic_cast<Integer *>(arr->at(0))->get() == 0);
     t_true(dynamic_cast<Integer *>(arr->at(3))->get() == 3);
     t_true(dynamic_cast<Integer *>(arr->at(3))->equals(new Integer(3)));
@@ -338,9 +335,6 @@ void testWithFloatingNumbers()
     t_true(arr->size() == 3);
     t_true(!arr->empty());
 
-    t_true(arr->index_of(ex1) == 0);
-    t_true(arr->index_of(ex3) == 1);
-
     t_true(dynamic_cast<FloatingNumber *>(arr->at(0))->get() == 2.0);
     t_true(dynamic_cast<FloatingNumber *>(arr->at(1))->get() +
                dynamic_cast<FloatingNumber *>(arr->at(2))->get() ==
@@ -363,9 +357,6 @@ void testWithBooleans()
     arr->add(ex2);
     arr->add(ex3);
     t_true(arr->back()->equals(new Boolean(false)));
-
-    t_true(arr->index_of(ex1) == 0);
-    t_true(arr->index_of(ex3) == 1);
 
     t_true(dynamic_cast<Boolean *>(arr->at(0))->get());
     t_true(!dynamic_cast<Boolean *>(arr->at(1))->get());
